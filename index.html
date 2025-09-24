@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="簡單名片設計工具，提供模板自訂並匯出 PDF">
+    <meta name="keywords" content="名片設計, 小卡片製作, 線上模板工具">
+    <title>簡單卡片設計器</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        #card { width: 300px; height: 150px; border: 1px solid black; margin: 20px auto; padding: 20px; }
+        textarea { width: 80%; height: 100px; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>簡單卡片設計工具</h1>
+    <p>輸入你的文字，然後匯出 PDF。</p>
+    
+    <div id="card">
+        <textarea id="textInput" placeholder="輸入姓名、職稱或其他文字..."></textarea>
+    </div>
+    
+    <button onclick="exportPDF()">匯出 PDF</button>
+    
+    <script>
+        function exportPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const text = document.getElementById('textInput').value || '預設文字';
+            doc.text(text, 10, 10);
+            doc.save('mycard.pdf');
+        }
+    </script>
+</body>
+</html>
